@@ -148,9 +148,9 @@
                       .attr("y", -10)
                       .attr("transform", "rotate(90)");
     });
-    // Create Event Handlers for mouse (mouse over)
+
     function handleMouseOver(d) {
-    // Use D3 to select element, change color and size
+
     d3.select(this)
             .attr("fill", "grey")
             .attr("r", "10")
@@ -158,16 +158,15 @@
             .attr("stroke-width",1);
 
     }
-    // Create Event Handlers for mouse (mouse out)
+
     function handleMouseOut(d) {
-    // Use D3 to select element, change color and size
+
     d3.select(this)
             .attr("fill", "lightblue")
             .attr("r", "5")
             .attr("stroke","lightblue")
             .attr("stroke-width",0);
         }
-    // Create Event Handlers for mouse (click)
 
         // Put your part three code here ***********************
 
@@ -196,11 +195,9 @@
                     .append("g")
                     .attr("transform", "translate(" + margins.left + "," + margins.top + ")");
 
-        // Get the data
         d3.csv("data/anscombe_I.csv", function(error, data){
           if (error) throw error;
 
-          // Make the data numbers so they can be compared
           data.forEach(function(d){ d[xVal] = parseFloat(d[xVal]); });
           data.forEach(function(d){ d[yVal] = parseFloat(d[yVal]); });
 
@@ -211,12 +208,12 @@
           // Sort the data
           data.sort(function(x, y) {return d3.ascending(x[xVal], y[xVal]);});
 
-          // Define the line
+          //line
           var vLine = d3.line()
               .x(function(d) { return x(d[xVal]); })
               .y(function(d) { return y(d[yVal]); });
 
-           // Add the vLine line.
+           //vLine line.
            svg1.append("path")
                .data([data])
                .attr("class", "line")
@@ -425,10 +422,10 @@
 
      var x5 = d3.scaleLinear().range([0,width]);
      var y5 = d3.scaleLinear().range([height,0]);
-     //Mapping dataset range on to the scale, the starting parameter 1,1 tells where the scale/axix is going to start in the visualization
+
      x5.domain([0,1 + d3.max(data,function(d)  {return d.x;})]);
      y5.domain([0,1 + d3.max(data,function(d) {return d.y})]);
-     //creating SVG object space in the part two div and accessing it using the div ID. Using transform/translate feature to tell which scales we want on svg
+
      var svg = d3.select("#scatterplotSet")
              .append("svg")
              .attr("height",height + margin.top + margin.bottom)
